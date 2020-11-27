@@ -1,0 +1,31 @@
+
+
+Zadanie - Pociąg
+
+
+Program do zarządzania tworzeniem składów pociągów.
+
+
+Jako klient chcę:
+1. Mieć możliwość tworzenia składu złożonego z wagonów (z węglem, cystern, platform) i lokomotyw.
+2. Żeby każdy wagon/lokomotywa miał określony swój unikatowy numer i swoją wagę własną.
+3. Podczepiać w różne miejsca składu nowe wagony i odłączać wagony, które się w nim znajdują. Wagony mogą się znaleźć w dowolnym miejscu składu ale lokomotywy tylko na początku albo na końcu. Przy odłączaniu wagonu należy podać jego numer a nie kolejność w składzie.
+4. Wyświetlać masę całkowitą całego składu.
+5. Wyświetlić w konsoli jak wygląda obecnie skład:
+- wizualizacja jak są podczepione kolejne wagony (każdy typ wagonu powinien mieć różny obrazek)
+- nad każdym elementem składu powinien być jego numer
+- pod każdym wagonem powinna być wyświetlona jego waga
+tak to może wyglądać:  (oczywiście możesz jakiś innych obrazków użyć (wink) )
+
+         4                     2            1          5
+   oooo    _____
+  _I__n_n__||_||            ________      ______
+>(_________|_7_|      -     |______|    -(______)-|_________|
+ /o ()() ()() o              oo  oo       oo  oo   oo     oo
+        32t                    22t          11t        5t
+
+6. Żeby wagony można było napełniać adekwatnym surowcem. Wagon ma mieć swoją maksymalną ładowność ale nie trzeba go całego załadować.
+7. Należy zaktualizować wizualizację tak żeby wyświetlała dodatkowo ile w każdym wagonie jest jakiego surowca i ile procent ładowności danego wagonu jest zajęte.
+8. Żeby wagony można było opróżniać z surowca.
+
+
