@@ -1,8 +1,8 @@
 package train.main;
 
 import train.communication.Output;
+import train.exceptions.MaxLoadExceeded;
 import train.exceptions.SerialNumberTaken;
-import train.train.Operations;
 import train.exceptions.WrongPositionException;
 import train.train.Train;
 import train.wagons.*;
@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Output output = new Output();
-        Operations operations = new Operations();
+        Train train = new Train();
+        Output output = new Output(train);
 
         boolean process = true;
 
@@ -40,6 +40,10 @@ public class Main {
                     }
                     System.out.println("What position: ");
                     int position = Integer.parseInt(scan.next());
+                    if(position > train.getList().size() + 1){
+                        System.out.println("You can only place wagon on the next position to last wagon. (size is " + train.getList().size() + ")");
+                        break;
+                    }
 
                     try {
                         serialNumber = output.enterSerialNumber();
@@ -49,7 +53,7 @@ public class Main {
                     }
 
                     try {
-                        operations.addToTrain(type, position, serialNumber);
+                        train.addToTrain(type, position, serialNumber);
                     } catch (WrongPositionException ex) {
                         System.out.println(ex.getMessage());
                     }
@@ -58,12 +62,38 @@ public class Main {
                 case 2 -> {
                     System.out.print("Serial number: ");
                     String serialNumber = scan.nextLine();
-                    operations.removeFromTrain(Integer.parseInt(serialNumber));
+                    train.removeFromTrain(Integer.parseInt(serialNumber));
+                }
+                //Load wagon
+                case 3 -> {
+                    System.out.println("Which wagon do you want to load? (Serial Number)");
+                    String wagonSelector = scan.next();
+                    System.out.println("How much do you want to load?");
+                    String loadAmount = scan.next();
+
+                    try{
+                        train.loadWagon(Integer.parseInt(wagonSelector), Double.parseDouble(loadAmount));
+                    } catch (MaxLoadExceeded ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+                //Unload wagon
+                case 4-> {
+                    System.out.println("Which wagon do you want to unload? (Serial Number)");
+                    String wagonSelector = scan.next();
+                    System.out.println("How much do you want to unload? (Type \"all\" to empty)");
+                    String unloadAmount = scan.next();
+                    if (unloadAmount.equals("all")) {
+                        train.emptyWagon(Integer.parseInt(wagonSelector));
+                    } else {
+                        train.unloadWagon(Integer.parseInt(wagonSelector), Double.parseDouble(unloadAmount));
+                    }
+
                 }
                 //Show composition
-                case 3 -> output.showVisualisation(Train.train);
+                case 5 -> output.showVisualisation(train);
                 //Quit
-                case 4 -> process = false;
+                case 6 -> process = false;
             }
         }
     }

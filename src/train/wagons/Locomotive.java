@@ -2,10 +2,9 @@ package train.wagons;
 
 public class Locomotive extends Wagon {
 
-    public static final double weight = 30;
-
     public Locomotive(int serialNumber) {
-        super(serialNumber, weight);
+        super(serialNumber);
+        setWeight(25);
     }
 
     @Override

@@ -2,10 +2,10 @@ package train.wagons;
 
 public class Platform extends Wagon {
 
-    public static final double weight = 15;
-
     public Platform(int serialNumber) {
-        super(serialNumber, weight);
+        super(serialNumber);
+        setWeight(12);
+        setMaxLoad(50);
     }
 
     @Override

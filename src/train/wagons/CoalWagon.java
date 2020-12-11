@@ -2,10 +2,11 @@ package train.wagons;
 
 public class CoalWagon extends Wagon {
 
-    public static final double weight = 18;
 
     public CoalWagon(int serialNumber) {
-        super(serialNumber, weight);
+        super(serialNumber);
+        setWeight(18);
+        setMaxLoad(100);
     }
 
     @Override

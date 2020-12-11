@@ -2,10 +2,10 @@ package train.wagons;
 
 public class Cistern extends Wagon {
 
-    public static final double weight = 22;
-
     public Cistern(int serialNumber) {
-        super(serialNumber, weight);
+        super(serialNumber);
+        setWeight(20);
+        setMaxLoad(62);
     }
 
     @Override
